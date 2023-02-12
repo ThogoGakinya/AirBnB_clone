@@ -1,114 +1,135 @@
-# Holberton-AirBnB clone
+<center> <h1>HBNB - The Console</h1> </center>
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+This repository contains a project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
 
-![holberton_airbnb_logo](images/hbnb_logo.png)
+---
 
-AirBnB-clone is a web application that seeks to replicate the AirBnB software platform for educational purposes. 
+<center><h3>Repository Contents by Project Task</h3> </center>
 
-### Definition:
+| Tasks | Files | Description |
+| ----- | ----- | ------ |
+| 0: Authors/README File | [AUTHORS](https://github.com/Kingzbrian/AirBnB_clone/blob/dev/AUTHORS) | Project authors |
+| 1: Pep8 | N/A | All code is pep8 compliant|
+| 2: Unit Testing | [/tests](https://github.com/Kingzbrian/AirBnB_clone/tree/dev/tests) | All class-defining modules are unittested |
+| 3. Make BaseModel | [/models/base_model.py](https://github.com/Kingzbrian/AirBnB_clone/blob/dev/models/base_model.py) | Defines a parent class to be inherited by all model classes|
+<br>
+<br>
+<center> <h2>General Use</h2> </center>
 
-According to Wikipedia:
+1. First clone this repository.
 
-> Airbnb, Inc., is an American online marketplace and hospitality service brokerage company based in San Francisco, California, United States. Members can use the service to arrange or offer lodging, primarily homestays, or tourism experiences.
-
-### Block Diagram of the Project:
-
-![holberton-pipeline](images/pipeline.png)
-
-### Tech
-
-AirBnB-clone uses a number of open source projects to work properly:
-
-* [Python](https://github.com/python) - Python programming language
-
-# Console
-
-### Installation:
-
-AirBnB-clone requires Python version. 3.4.3 to run.
-
-### How to run:
-
-```sh
-# First clone the repo
-$ git clone https://github.com/HeimerR/AirBnB_clone.git
-# Second executes the file "console.py" inside the folder AirBnB_clone
-$ cd AirBnB_clone && ./console.py
-# Start using the console!
+3. Once the repository is cloned locate the "console.py" file and run it as follows:
 ```
-
-### How to use it:
-
-You will get a prompt like this:
-```sh
-(hbnb) 
+/AirBnB_clone$ ./console.py
 ```
-You can now start typing console commands to create, update or destroy users, places, etc.
-```sh
-(hbnb) create User
-697d2586-e3ca-451a-8221-88ead0eb8283
+4. When this command is run the following prompt should appear:
+```
 (hbnb)
 ```
+5. This prompt designates you are in the "HBnB" console. There are a variety of commands available within the console program.
 
-### Commands available:
+##### Commands
+    * create - Creates an instance based on given class
 
-The following commands are available to use:
+    * destroy - Destroys an object based on class and UUID
 
-| Command | Arguments |
-| ------ | ------ |
-| create | `<class name>` |
-| show | `<class name> <id>` |
-| destroy | `<class name> <id>` |
-| all | `[OPTIONAL <class name>]`  |
-| update | `<class name> <id> <attribute name> "<attribute value>"`  |
-| `<class name>.<command>(arguments)`| it depends on the type of command you use |
+    * show - Shows an object based on class and UUID
 
-### Classes available:
+    * all - Shows all objects the program has access to, or all objects of a given class
 
-The following commands are available to use:
+    * update - Updates existing attributes an object based on class name and UUID
 
-| Class name | Default Attributes |
-| ------ | ------ |
-| BaseModel | `id, created_at, updated_at` |
-| User | `email, password, first_name, last_name` |
-| Place | `city_id, user_id, name, description, number_rooms, number_bathrooms` |
-| Place | `max_guest, price_by_night, latitude, longitude, amenity_ids` |
-| State | `name`  |
-| City | `state_id, name`  |
-| Amenity | `name`  |
-| Review | `place_id, user_id, text`  |
+    * quit - Exits the program (EOF will as well)
 
-### Example
 
-Let's create a user:
-```sh
-(hbnb) create User
-dcc89f74-2663-4f2d-b647-9c829d2b4797
-(hbnb)
+##### Alternative Syntax
+Users are able to issue a number of console command using an alternative syntax:
+
+	Usage: <class_name>.<command>([<id>[name_arg value_arg]|[kwargs]])
+Advanced syntax is implemented for the following commands: 
+
+    * all - Shows all objects the program has access to, or all objects of a given class
+
+	* count - Return number of object instances by class
+
+    * show - Shows an object based on class and UUID
+
+	* destroy - Destroys an object based on class and UUID
+
+    * update - Updates existing attributes an object based on class name and UUID
+
+<br>
+<br>
+<center> <h2>Examples</h2> </center>
+<h3>Primary Command Syntax</h3>
+
+###### Example 0: Create an object
+Usage: create <class_name>
 ```
-
-Now, let's see what it has this instance:
-```sh
-(hbnb) show User dcc89f74-2663-4f2d-b647-9c829d2b4797
-[User] (dcc89f74-2663-4f2d-b647-9c829d2b4797) {'updated_at': datetime.datetime(2019, 7, 3, 19, 14, 32, 536201), 'id': 'dcc89f74-2663-4f2d-b647-9c829d2b4797', 'created_at': datetime.datetime(2019, 7, 3, 19, 14, 32, 536180)}
-(hbnb)
+(hbnb) create BaseModel
 ```
-
-Let's update an attribute and display all the users:
-```sh
-(hbnb) User.update("dcc89f74-2663-4f2d-b647-9c829d2b4797", "first_name", "Heimer")
-(hbnb) User.all()
-["[User] (dcc89f74-2663-4f2d-b647-9c829d2b4797) {'created_at': datetime.datetime(2019, 7, 3, 19, 14, 32, 536180), 'id': 'dcc89f74-2663-4f2d-b647-9c829d2b4797', 'first_name': 'Heimer', 'updated_at': datetime.datetime(2019, 7, 3, 19, 18, 4, 845273)}", "[User] (697d2586-e3ca-451a-8221-88ead0eb8283) {'created_at': datetime.datetime(2019, 7, 3, 17, 55, 49, 24311), 'id': '697d2586-e3ca-451a-8221-88ead0eb8283', 'updated_at': datetime.datetime(2019, 7, 3, 18, 1, 19, 126604)}"]
 ```
-Let's delete the user we created:
-```sh
-(hbnb) destroy User dcc89f74-2663-4f2d-b647-9c829d2b4797
-(hbnb) show User dcc89f74-2663-4f2d-b647-9c829d2b4797
+(hbnb) create BaseModel
+3aa5babc-efb6-4041-bfe9-3cc9727588f8
+(hbnb)                   
+```
+###### Example 1: Show an object
+Usage: show <class_name> <_id>
+
+```
+(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
+[BaseModel] (3aa5babc-efb6-4041-bfe9-3cc9727588f8) {'id': '3aa5babc-efb6-4041-bfe9-3cc9727588f8', 'created_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96959), 
+'updated_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96971)}
+(hbnb)  
+```
+###### Example 2: Destroy an object
+Usage: destroy <class_name> <_id>
+```
+(hbnb) destroy BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
+(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
 ** no instance found **
+(hbnb)   
+```
+###### Example 3: Update an object
+Usage: update <class_name> <_id>
+```
+(hbnb) update BaseModel b405fc64-9724-498f-b405-e4071c3d857f first_name "person"
+(hbnb) show BaseModel b405fc64-9724-498f-b405-e4071c3d857f
+[BaseModel] (b405fc64-9724-498f-b405-e4071c3d857f) {'id': 'b405fc64-9724-498f-b405-e4071c3d857f', 'created_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729889), 
+'updated_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729907), 'first_name': 'person'}
 (hbnb)
 ```
-License
-----
+<h3>Alternative Syntax</h3>
 
-MIT
+###### Example 0: Show all User objects
+Usage: <class_name>.all()
+```
+(hbnb) User.all()
+["[User] (99f45908-1d17-46d1-9dd2-b7571128115b) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92071), 'id': '99f45908-1d17-46d1-9dd2-b7571128115b', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92056)}", "[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+
+###### Example 1: Destroy a User
+Usage: <class_name>.destroy(<_id>)
+```
+(hbnb) User.destroy("99f45908-1d17-46d1-9dd2-b7571128115b")
+(hbnb)
+(hbnb) User.all()
+(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+###### Example 2: Update User (by attribute)
+Usage: <class_name>.update(<_id>, <attribute_name>, <attribute_value>)
+```
+(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", name "Todd the Toad")
+(hbnb)
+(hbnb) User.all()
+(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'name': 'Todd the Toad', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+###### Example 3: Update User (by dictionary)
+Usage: <class_name>.update(<_id>, <dictionary>)
+```
+(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", {'name': 'Fred the Frog', 'age': 9})
+(hbnb)
+(hbnb) User.all()
+(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+<br>
